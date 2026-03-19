@@ -1,0 +1,365 @@
+@import url('https://fonts.googleapis.com/css2?\
+family=Emerald+Serif&\
+family=Forever+Freedom&\
+family=Bauhaus&\
+family=Bebas Neue&\
+display=swap');
+
+:root{
+	--main-font: "alliance no.2", Georgia, serif;
+	--catchy-font:"Bebas Neue";
+	/* colors */
+	--blood-red: #880000;
+	--grey-af: #999999af;
+	--blacktransp-h2: #888888a5;
+	
+	/* component colors  var( -- ); */
+	--background: #ffffff;
+	--main-h1:  #999999af;
+	--main-h2: var(--blacktransp-h2);
+	--main-h3:
+}
+
+	/* _______________NAV BAR________________*/
+nav {
+	font-family: var(--main-font);
+  display: flex;
+  justify-content: space-between; /* space brand and links */
+  align-items: center;
+	height: 30px; 
+  padding: 1rem 2rem;
+  background-color: #11111122; /* white bg */
+
+	
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* subtle shadow */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+	color: transparent;
+}
+
+nav .logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #000;
+  text-decoration: none;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 3%;
+	opacitiy: transparent;
+}
+/* */
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #007aff;
+}
+
+nav.active ul {
+/*  position: fixed;
+  top: 0;
+  right: 0;      /* change left -> right /
+  height: 100vh;
+  width: 60vw; /* 60% of viewport width /
+  padding-top: 3vw; /* space top relative to viewport /
+  background: white;
+  z-index: 9999;
+  padding-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.3); */
+	position: fixed;
+  top: 0;
+  left: 0;       /* cover from left */
+  width: 100vw;  /* full viewport width */
+  height: 100vh; /* full height */
+  background: white;
+  padding-top: 3rem;
+  flex-direction: column;
+  align-items: flex-start; /* text left */
+  box-shadow: none;
+  z-index: 9999;
+  display: flex;
+  overflow-y: auto; /* scroll if long */
+	
+
+}
+
+nav.active ul li {
+	font: var(--main-font);
+	
+  text-align: left;
+  font-size: 1.2rem; /* bigger touch area */
+}
+
+
+
+.hamburger {
+	
+	position: fixed;
+  top: 10%;
+  right: 7%; /* place on right */
+	width: 15px;
+  height: 12%;
+  z-index: 1000;
+	  transform: translateY(-50%);
+  cursor: pointer;
+ /* enough for 3 bars */
+   display: none; 
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+	
+}
+.hamburger div {
+	transition: all 0.3s ease;
+  width: 25px;
+  height: 3px;
+	
+  background: black;
+	border-radius: 2px;
+}
+
+/* active state */
+/*===========Turn hamburger to X===============*/
+nav.active .hamburger div:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 5px);
+}
+nav.active .hamburger div:nth-child(2) {
+  opacity: 0;
+}
+nav.active .hamburger div:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -5px);
+}
+/*===========Turn hamburger to X===============*/
+
+
+/* Mobile styles */
+@media (max-width: 600px) {
+  nav ul {
+    display: none;
+    flex-direction: column;
+		
+  }
+  .hamburger {
+    display: flex !important;
+		z-index: 11000; /* higher than nav ul's 9999 */
+  }
+  nav.active ul {
+    display: flex;
+
+  }
+	nav.active menu-list {
+		text-decoration: none;
+		color: #333;
+		font-weight: 500;
+		transition: color 0.3s ease;
+	}
+}
+/*===========Turn hamburger to X end===============*/
+/*======================NAV BAR end=========================*/
+
+
+
+/*======================Heading Title STart=========================*/
+.heading_title{
+	  position: static; /* or absolute */
+	/*text-shadow: 2px 2px 4px rgba(0,0,0,0.5);*/
+	color: var(--main-h1);
+	filter: invert(1);
+  top: 500%; 
+
+	/*
+
+  left: 50%;
+ 	transform: translate(20%, -50%); /* clamp(2vw, 8vw, 20px);
+		*/
+	font-family: var(--catchy-font);
+  font-size: clamp(2vw, 8vw, 20px);
+
+  font-weight: bold;
+  letter-spacing: 1.5vw;
+  text-transform: uppercase;
+  text-align: center; 
+	box-sizing: border-box;
+	z-index: 120;
+	background-color: transparent;
+	
+}
+
+
+
+.heading_liner{
+	position: static; /* or absolute */
+	/*text-shadow: 2px 2px 4px rgba(0,0,0,0.5);*/
+	color: var(--main-h2);
+	
+	/*filter: invert(1); */
+	
+  transform: translate(0%, -10%); 
+	font-family: var(--main-font);
+  font-size: 2vw; /* clamp(2vw, 8vw, 20px);*/
+  font-weight: bold;
+  letter-spacing: 1vw;
+  text-transform: uppercase;
+	text-align: center; 
+	box-sizing: border-box;
+	z-index: 120;
+	background-color: transparent;
+	
+}
+
+/*======================Heading Title End=========================*/
+
+
+/* ========================= SCENE CSS ========================= */
+.scene, .a3d { display: grid }
+
+.scene {
+
+	/* prevent scrollbars */
+	
+	overflow: visible;
+	/* for 3D look; smaller = more extreme effect */
+	perspective: 35em;
+	mask: /* lateral fade */
+		linear-gradient(90deg, 
+				#0000, red 20% 80%, #0000)
+} 
+.a3d {
+	overflow: visible;
+	place-self: center /* middle align */;
+	/* don't flatten 3D transformed children 
+	 * of this parent having its own 3D transform */
+	transform-style: preserve-3d;
+	animation: ry 50s linear infinite;
+
+}
+
+
+.a3d:hover {
+	/*animation-play-state: paused;*/
+	
+}
+
+
+
+
+
+
+/* simplest y axis rotation */
+@keyframes ry { to { rotate: y 1turn } }
+/* ========= card CSS  ======== */
+.card {
+	
+	transition: border-color 1s ease, filter 1s ease;
+	
+
+	--w: 15.5em;	/* base card width */
+	/* compute base angle corresponding to a card */
+	--ba: 1turn/var(--n); /* in the future: sibling-count() */
+	grid-area: 1/ 1 /* stack in same one grid cell */;
+	width: var(--w);
+	aspect-ratio: 9/ 13;
+	object-fit: cover;
+	border-radius: 1.5em;
+	/* don't want to see back of cards in front of screen plane */
+	backface-visibility: hidden;
+	/* need to use a transform chain here, cannot use separate 
+	 * rotate & translate properties because they'd be applied 
+	 * in wrong order (translate, then rotate) for what we need */
+	transform: 
+		/* rotate around y axis; in the future: sibling-index() */
+		rotatey(calc(var(--i)*var(--ba)))
+		/* only after that translate along z axis with minus */
+		translatez(calc(-1*(.5*var(--w) + .5em)/tan(.5*var(--ba))));
+	filter: grayscale(90%);
+				opacity: 0.25;
+	transition:  filter 5s ease, opacity 5s ease;
+
+	
+} 
+.card:hover {
+	position: absolute;
+	scale: 1;
+  border: .5px solid grey; /* or any color and thickness */
+  filter: grayscale(0%);
+	opacity: 1;
+	
+}
+.card.active {
+  /*border-color: white;*/
+	transition: border-color 1s ease, filter 1s ease;
+  filter: grayscale(00%);
+	opacity: 1;
+	transition: opacity 2s ease;
+}
+
+.card .card-text {
+	
+  position: absolute;
+	font-family: var(--main-font);
+  top: 1em;
+  left: 10%;
+  right: 1em;
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 5px black;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.1;
+	transition: opacity 3s ease;
+}
+.card.active .card-text {
+	opacity: 1.0;
+		transition: opacity 3s ease;
+}
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  display: block;
+}
+
+.bounding-box {
+	  position: fixed;
+  top: 0;
+  left: 50.2%; /* center area, since width is 20% */
+  width: 17vw; /* 20% of viewport width */
+  height: 100vh; /* full viewport height */
+  pointer-events: none; /* so it does not block clicks */
+  /*outline: 2px solid blue; /* show bounding box */
+}
+/* ========= card CSS end ======== */
+
+
+@media (prefers-reduced-motion: reduce) {
+	.a3d { animation-duration: 10s }
+}
+
+
+/* ========================= SCENE CSS end ========================= */
+
+
+/* ====== General page prettifying and layout ====== */
+html, body { display: grid }
+
+html { height: 100% }
+
+body {
+	z-index: -1;
+	/*background: #aa0000} background: #ffffff }aa1144*/
+	background: var(--background) };
+
