@@ -7,8 +7,8 @@ display=swap');
 
 @font-face {
   font-family: 'Alliance No.2';
-  src: url('fonts/alliance-no2.woff2') format('woff2'),
-       url('fonts/alliance-no2.woff') format('woff');
+  src: url('fonts/alliance-no2.woff2') format('woff2');
+
   font-weight: normal;
   font-style: normal;
 }
