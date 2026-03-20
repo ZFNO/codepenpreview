@@ -1,3 +1,4 @@
+
 const hamburger = document.getElementById('hamburger');
 const nav = document.querySelector('nav');
 
@@ -39,6 +40,7 @@ for (let i = 0; i < N; i++) {
 
   const text = document.createElement('div');
   text.className = 'card-text';
+	text.id = `card${i+1} `;
   text.textContent = `FEATURE ${i + 1}`; // change as needed
 
   card.appendChild(img);
@@ -76,6 +78,92 @@ const DATA = [
     container.appendChild(img);
   }
 */
+
+
+//------toggle root values-------
+const root = document.documentElement;
+
+let defaultValues = {
+  '--background': '#780116',
+  '--main-h1': '#F7b538',
+  '--faint-blink': '#ff4444',
+  '--main-h2': '#ff4444',
+  '--main-h3': '#000000',
+  '--nav-logo': '#F7b538',
+  '--nav-items': '#ff4444',
+  '--nav-items-hover': '#C32f27',
+  '--nav-hamburger': '#ff4444',
+  '--card-text': '#F7b538',
+};
+
+const activeValues  = {
+  '--background': '#780116',
+  '--main-h1': '#F7b538',
+  '--faint-blink': '#ff4444',
+  '--main-h2': '#ff4444',
+  '--main-h3': '#000000',
+  '--nav-logo': '#F7b538',
+  '--nav-items': '#ff4444',
+  '--nav-items-hover': '#C32f27',
+  '--nav-hamburger': '#ff4444',
+  '--card-text': '#F7b538',
+};
+
+// Create form inputs dynamically
+const form = document.getElementById('colorForm');
+for (const [varName, color] of Object.entries(activeValues)) {
+  const label = document.createElement('label');
+  label.textContent = varName + ': ';
+  label.style.display = 'block';
+
+  const input = document.createElement('input');
+  input.type = 'color';
+  input.value = color;
+  input.dataset.var = varName;
+
+  input.addEventListener('input', e => {
+    root.style.setProperty(e.target.dataset.var, e.target.value);
+  });
+
+  label.appendChild(input);
+  form.appendChild(label);
+}
+
+// Show/hide menu
+document.getElementById('editColorsBtn').addEventListener('click', () => {
+  const menu = document.getElementById('colorMenu');
+  if (menu.style.display === 'none' || !menu.style.display) {
+    menu.style.display = 'block';
+  } else {
+    menu.style.display = 'none';
+  }
+});
+
+document.getElementById('closeMenu').addEventListener('click', () => {
+  document.getElementById('colorMenu').style.display = 'none';
+});
+
+
+
+
+let active = false;
+
+function applyColors(colors) {
+  for (const [key, value] of Object.entries(colors)) {
+    root.style.setProperty(key, value);
+  }
+}
+
+document.getElementById('toggleBtn').addEventListener('click', () => {
+  if (active) {
+    applyColors(defaultValues);
+  } else {
+    applyColors(activeValues);
+  }
+  active = !active;
+});
+//------toggle root values-------
+
 
 
 //-------------bounding box----------------------
@@ -130,13 +218,26 @@ animate();
 const headlines = [
   "One AI. Infinite Profiles. All Systems Go.",
   "Deploy a dev agent in seconds.",
-  "Render → Write → Ship with cli clarity."
+  "Render  Write  Ship with cli clarity."
 ];
 
-const cardtext = [
-	"create a new "
-	
-];
+
+const cardtext = {
+  card1: ['value1a', 'value1b'],
+  card2: ['value2a', 'value2b'],
+  card3: ['value3a', 'value3b'],
+  card4: ['value4a', 'value4b'],
+  card5: ['value5a', 'value5b'],
+  card6: ['value6a', 'value6b'],
+  card7: ['value7a', 'value7b'],
+  card8: ['value8a', 'value8b'],
+  card9: ['value9a', 'value9b'],
+  card10: ['value10a', 'value10b'],
+  card11: ['value11a', 'value11b'],
+  card12: ['value12a', 'value12b']
+};
+
+
 
 function animateTypewriter(element, texts, textIndex = 0, charIndex = 0) {
   if (charIndex < texts[textIndex].length) {

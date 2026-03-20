@@ -5,10 +5,19 @@ family=Bauhaus&\
 family=Bebas Neue&\
 display=swap');
 
+@font-face {
+  font-family: 'Alliance No.2';
+  src: url('fonts/alliance-no2.woff2') format('woff2'),
+       url('fonts/alliance-no2.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 :root{
 	
 	
-	--main-font: "alliance no.2", Georgia, serif;
+	--main-font: "Alliance no.2", Georgia, serif;
 	--catchy-font:"Bebas Neue";
 	--card-font: "Bebas Neue";
 	--card-font-size: 30px; 
@@ -27,19 +36,41 @@ display=swap');
 	
 	
 	/* TestMode*/
-	--background: #780116;
-	--main-h1:  #F7b538;
-	--faint-blink: #ff4444;
-	--main-h2: #ff4444;
-	--main-h3: #000000;
+	--background: #ffffff;/* #780116;#ffffff/* */
+	--main-h1: #333333af; /* #F7b538;*/
+	--faint-blink: #ff4444; /* #ff4444;*/
+	--main-h2: #888888a5;	/*  #ff4444;*/
+	--main-h3: ; /* #000000;*/
 	
-	--nav-logo: #F7b538;
-	--nav-items: #ff4444 ;
-	--nav-items-hover:#C32f27;
-	--nav-hamburger: #ff4444;
+	--nav-logo: #333333af; /* #F7b538;*/
+	--nav-items:  #333333af;/* #ff4444 ;*/
+	--nav-items-hover: #333333af;/* #C32f27;*/
+	--nav-hamburger: #333333af;/* #ff4444;*/
 	
-	--card-text: #F7b538;
+	--card-text: #ffffff;/* #F7b538; */
 }
+/*++++++++++ dev ++++++++++++++ */
+.text-button {
+  all: unset;            /* remove all default styles */
+  padding: 0;            /* no padding */
+  margin: 0;             /* no margin */
+  display: inline;  
+  width: auto;           /* no fixed width */
+  height: auto;   
+	  line-height: normal;   /* normal line height */
+	  cursor: pointer;   
+  color: var(--main-h1);        /* style text color */
+
+  font-family: inherit;      /* inherit font from parent */
+	font-size: 16px;
+}
+
+#colorMenu {
+	color: black;
+  max-width: 300px;
+  width: 90vw;
+}
+/*++++++++++ dev ++++++++++++++ */
 
 	/* _______________NAV BAR________________*/
 nav {
@@ -67,6 +98,10 @@ nav .logo {
   text-decoration: none;
 }
 
+nav .menu-list{
+	font-family: var(--main-font);
+	
+}
 nav ul {
   display: flex;
   list-style: none;
@@ -239,7 +274,7 @@ nav.active .hamburger div:nth-child(3) {
  	transform: translate(20%, -50%); /* clamp(2vw, 8vw, 20px);
 		*/
 	font-family: var(--catchy-font);
-  font-size: clamp(8vw, 20px, 20px);
+  font-size: clamp(45px, 7.5vw, 64px);
 	
 	filter:blur(0.5px);
 
@@ -264,9 +299,9 @@ nav.active .hamburger div:nth-child(3) {
 	
   transform: translate(0%, -10%); 
 	font-family: var(--main-font);
-  font-size: 2vw; /* clamp(2vw, 8vw, 20px);*/
+  font-size:  clamp(12px, 2vw, 40px); /* clamp(2vw, 8vw, 20px);*/
   font-weight: bold;
-  letter-spacing: 1vw;
+  letter-spacing: 0.5vw;
   text-transform: uppercase;
 	text-align: center; 
 	box-sizing: border-box;
