@@ -1,3 +1,10 @@
+@echo off
 call git add .
-call git commit -m "x"
+
+if "%~1" == "" (
+  call git commit -m "x"
+) else (
+  call git commit -m %*
+)
+
 call git push
