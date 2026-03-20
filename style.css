@@ -333,7 +333,7 @@ nav.active .hamburger div:nth-child(3) {
 	/* don't flatten 3D transformed children 
 	 * of this parent having its own 3D transform */
 	transform-style: preserve-3d;
-	animation: ry 50s linear infinite;
+	animation: ry 60s linear infinite;
 
 }
 
@@ -353,7 +353,7 @@ nav.active .hamburger div:nth-child(3) {
 
 
 
-/* ============= card CSS start============ */
+/* =============card CSS start============ */
 .card {
 	
 	
@@ -436,20 +436,40 @@ nav.active .hamburger div:nth-child(3) {
   display: block;
 }
 
+.reflection {
+  position: fixed;
+  top: 100%; /* below card */
+  left: 0;
+  width: 100%;
+  height: 50%; /* adjust height as needed */
+  overflow: hidden;
+  transform: scaleY(-2);
+  filter: opacity(0.3) blur(8px);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+  pointer-events: none;
+	transition: mask-image 4s ease, filter 4s ease, grayscale 4s ease;
+}
+
+.reflection img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .bounding-box {
 	  position: fixed;
   top: 0;
-  left: 40.2%; /* center area, since width is 20% */
-  width: 30vw; /* 20% of viewport width */
+  left: 34.2%; /* center area, since width is 20% */
+  width: 40vw; /* 20% of viewport width */
   height: 100vh; /* full viewport height */
   pointer-events: none; /* so it does not block clicks */
-  /*outline: 2px solid blue; /* show bounding box */
+  outline: 2px solid blue; /* show bounding box */
 }
 /* ============= card CSS end ============ */
 
 
 @media (prefers-reduced-motion: reduce) {
-	.a3d { animation-duration: 50s }
+	.a3d { animation-duration: 70s }
 }
 
 

@@ -40,11 +40,23 @@ for (let i = 0; i < N; i++) {
 
   const text = document.createElement('div');
   text.className = 'card-text';
-	text.id = `card${i+1} `;
-  text.textContent = `FEATURE ${i + 1}`; // change as needed
+  text.id = `card${i + 1}`;
+  text.textContent = `FEATURE ${i + 1}`;
+	/* */
 
   card.appendChild(img);
   card.appendChild(text);
+
+  // Create reflection div
+  const reflection = document.createElement('div');
+  reflection.className = 'reflection card';
+
+  const reflectionImg = document.createElement('img');
+  reflectionImg.src = DATA[i];
+  reflectionImg.alt = 'gif reflection';
+
+  reflection.appendChild(reflectionImg);
+  card.appendChild(reflection);
 
   container.appendChild(card);
 }
@@ -139,9 +151,10 @@ document.getElementById('editColorsBtn').addEventListener('click', () => {
   }
 });
 
-document.getElementById('closeMenu').addEventListener('click', () => {
+document.getElementById('closeMenu').addEventListener('click', () => 
+	{
   document.getElementById('colorMenu').style.display = 'none';
-});
+	});
 
 
 
@@ -223,8 +236,8 @@ const headlines = [
 
 
 const cardtext = {
-  card1: ['value1a', 'value1b'],
-  card2: ['value2a', 'value2b'],
+  card1: ['300+ commands; comlpete commandline freedom', 'streamlined workflows'],
+  card2: ['automate document with their own custom histories', 'value2b'],
   card3: ['value3a', 'value3b'],
   card4: ['value4a', 'value4b'],
   card5: ['value5a', 'value5b'],
@@ -233,8 +246,8 @@ const cardtext = {
   card8: ['value8a', 'value8b'],
   card9: ['value9a', 'value9b'],
   card10: ['value10a', 'value10b'],
-  card11: ['value11a', 'value11b'],
-  card12: ['value12a', 'value12b']
+  card11: ['no more copy pasting and back and forth', ''],
+  card12: ['automate document with their own custom histories', 'value12b']
 };
 
 
@@ -256,16 +269,22 @@ function animateTypewriter(element, texts, textIndex = 0, charIndex = 0) {
 
 
 
-window.onload = () => {
+window.onload = () => 
+{
   // For single intro element
   const intro = document.getElementById('typewriter_intro');
   if (intro) animateTypewriter(intro, headlines);
 
   // For all card-text elements
-  const cards = document.querySelectorAll('.card-text');
-  cards.forEach(card => {
-    animateTypewriter(card, headlines);
-  });
+const cards = document.querySelectorAll('.card-text');
+cards.forEach((card, index) => {
+  const key = 'card' + (index + 1); // card1, card2, ...
+  const texts = cardtext[key];
+  if (texts) {
+    animateTypewriter(card, texts);
+  }
+});
+	
 };
 
 
