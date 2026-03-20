@@ -282,19 +282,26 @@ el.addEventListener('mouseleave', () => {
 el.addEventListener('wheel', e => {
   if (el.style.animationPlayState === 'paused') {
     e.preventDefault();
-    progress += e.deltaX * 0.0001;
-    if (progress > 1) progress -= 1;
-    if (progress < 0) progress += 1;
+    // update progress by wheel delta
+    progress += e.deltaY * 0.0001;
+    if (progress > 1) {
+      progress -= 1;
+    } else if (progress < 0) {
+      progress += 1;
+    }
     el.style.animationDelay = `-${progress * 60}s`;
   }
 });
 
 let startX = 0;
+let isThrottled = false;
+
 el.addEventListener('touchstart', e => {
   startX = e.touches[0].clientX;
 });
 
 el.addEventListener('touchmove', e => {
+  if (isThrottled) return;
   if (el.style.animationPlayState === 'paused') {
     e.preventDefault();
     const currentX = e.touches[0].clientX;
@@ -302,10 +309,25 @@ el.addEventListener('touchmove', e => {
     startX = currentX;
 
     progress += -deltaX * 0.0001;
-    if (progress > 1) progress -= 1;
-    if (progress < 0) progress += 1;
+    if (progress > 1) {
+      progress -= 1;
+    } else if (progress < 0) {
+      progress += 1;
+    }
     el.style.animationDelay = `-${progress * 60}s`;
   }
+  isThrottled = true;
+  setTimeout(() => {
+    isThrottled = false;
+  }, 50); // runs max every 50ms
+});
+
+el.addEventListener('touchstart', () => {
+  el.style.animationPlayState = 'paused';
+});
+
+el.addEventListener('touchend', () => {
+  el.style.animationPlayState = 'running';
 });
 
 
