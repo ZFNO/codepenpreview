@@ -282,36 +282,28 @@ el.addEventListener('mouseleave', () => {
 el.addEventListener('wheel', e => {
   if (el.style.animationPlayState === 'paused') {
     e.preventDefault();
-    // update progress by wheel delta
-    progress += e.deltaY * 0.0001;
-    if (progress > 1) {
-      progress -= 1;
-    } else if (progress < 0) {
-      progress += 1;
-    }
+    progress += e.deltaX * 0.0001;
+    if (progress > 1) progress -= 1;
+    if (progress < 0) progress += 1;
     el.style.animationDelay = `-${progress * 60}s`;
   }
 });
 
-let startY = 0;
-
+let startX = 0;
 el.addEventListener('touchstart', e => {
-  startY = e.touches[0].clientY;
+  startX = e.touches[0].clientX;
 });
 
 el.addEventListener('touchmove', e => {
   if (el.style.animationPlayState === 'paused') {
     e.preventDefault();
-    const currentY = e.touches[0].clientY;
-    const deltaY = currentY - startY;
-    startY = currentY;
-    
-    progress += -deltaY * 0.0001; // invert deltaY to match wheel
-    if (progress > 1) {
-      progress -= 1;
-    } else if (progress < 0) {
-      progress += 1;
-    }
+    const currentX = e.touches[0].clientX;
+    const deltaX = currentX - startX;
+    startX = currentX;
+
+    progress += -deltaX * 0.0001;
+    if (progress > 1) progress -= 1;
+    if (progress < 0) progress += 1;
     el.style.animationDelay = `-${progress * 60}s`;
   }
 });
