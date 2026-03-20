@@ -3,13 +3,13 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>Pure CSS 3D animated carousel - minimal code, heavily commented</title>
+    <title> >C_OS: reloaded</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="./style.css">
 
   </head>
     
   <body>
- 
+<!-- delete all dev sections after publish -->
 <nav>
   <a href="#" class="logo">C_OS</a>
   <div class="hamburger" id="hamburger">
@@ -22,7 +22,21 @@
     <li><a href="#">Dev</a></li>
     <li><a href="#">Enterprise</a></li>
     <li><a href="#">Military</a></li>
+		
+		<!--> dev<-->
+		<li>		<button class="text-button" id="toggleBtn">Toggle</button> 
+	<button class="text-button" id="editColorsBtn">  &nbspEdit </button> 
+ <div id="colorMenu" style="display:none; position:fixed; top:20%; left:50%; transform:translateX(-50%);
+																			 background:#fff; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.3); z-index:10000;">
+			<form id="colorForm">
+				<!-- Inputs will go here -->
+			</form>
+			<button id="closeMenu">Close</button>
+		</div>
+
+		<!--> dev<-->
   </ul>
+	
 </nav>
 
 <div class = "heading_title" id="titlebar">
@@ -40,6 +54,7 @@
 	<div class="bounding-box"></div>
 </div>
 
+<div></div>
 
     <script  src="./script.js"></script>
   </body>
