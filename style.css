@@ -161,6 +161,7 @@ nav.active .hamburger div:nth-child(1) {
 	
 }
 nav.active .hamburger div:nth-child(2) {
+	transform: translateX(100px);
   opacity: 0;
 }
 nav.active .hamburger div:nth-child(3) {
@@ -341,6 +342,7 @@ nav.active .hamburger div:nth-child(3) {
 		rotatey(calc(var(--i)*var(--ba)))
 		/* only after that translate along z axis with minus */
 		translatez(calc(-1*(.5*var(--w) + .5em)/tan(.5*var(--ba))));
+	
 	filter: grayscale(90%) blur(3px);
 				opacity: 0.25;
 
@@ -412,7 +414,7 @@ nav.active .hamburger div:nth-child(3) {
 
 
 @media (prefers-reduced-motion: reduce) {
-	.a3d { animation-duration: 10s }
+	.a3d { animation-duration: 50s }
 }
 
 
