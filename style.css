@@ -218,7 +218,7 @@ nav.active .hamburger div:nth-child(3) {
 
 .scene {
   /* prevent scrollbars */
-  overflow: visible;
+  overflow: hidden;
   /* for 3D look; smaller = more extreme effect */
   perspective: 35em;
   mask: linear-gradient(90deg, #0000, red 20% 80%, #0000);
