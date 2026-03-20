@@ -7,7 +7,7 @@ display=swap');
 
 @font-face {
   font-family: 'Alliance No.2';
-  src: url('fonts/alliance-no2.woff2') format('woff2');
+  src: url('font/alliance-no2.woff2') format('woff2');
 
   font-weight: normal;
   font-style: normal;
@@ -114,7 +114,7 @@ nav ul {
 nav ul li a {
   text-decoration: none;
   color: var(--nav-items);
-  font-weight: 500;
+  font-weight: 600;
   transition: color 0.3s ease;
 }
 
@@ -170,7 +170,8 @@ nav.active ul li {
 	width: 15px;
   height: 12%;
   z-index: 1000;
-	  transform: translateY(-50%);
+	transform: translateY(-50%);
+		
   cursor: pointer;
  /* enough for 3 bars */
    display: none; 
@@ -184,8 +185,6 @@ nav.active ul li {
 	transition: all 0.3s ease;
   width: 25px;
   height: 3px;
-	
-
 	border-radius: 2px;
 }
 
@@ -340,17 +339,11 @@ nav.active .hamburger div:nth-child(3) {
 
 .a3d:hover {
 	/*animation-play-state: paused;*/
-	
+	  animation-play-state: paused;
 }
-
-
-
-
-
 
 /* simplest y axis rotation */
 @keyframes ry { to { rotate: y 1turn } }
-
 
 
 /* =============card CSS start============ */
@@ -391,6 +384,7 @@ nav.active .hamburger div:nth-child(3) {
   border: .5px solid grey; /* or any color and thickness */
   filter: grayscale(0%);
 	opacity: 1;
+	transition: opacity 0.5s ease , filter 1s linear;
 	
 }
 .card.active {
@@ -423,7 +417,7 @@ nav.active .hamburger div:nth-child(3) {
 		transition: opacity 4s ease , filter 2s linear;
 }
 
-.card:hover .cart-text{
+.card:hover .card-text{
 	opacity: 1.0;
 		transition: opacity 1s ease , filter 1s linear;
 	
@@ -436,18 +430,20 @@ nav.active .hamburger div:nth-child(3) {
   display: block;
 }
 
-.reflection {
-  position: fixed;
+.card .reflection {
+  position: absolute;
   top: 100%; /* below card */
   left: 0;
   width: 100%;
   height: 50%; /* adjust height as needed */
   overflow: hidden;
-  transform: scaleY(-2);
+  transform: scaleY(-5);
   filter: opacity(0.3) blur(8px);
   mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+	
   pointer-events: none;
 	transition: mask-image 4s ease, filter 4s ease, grayscale 4s ease;
+	
 }
 
 .reflection img {
@@ -463,10 +459,22 @@ nav.active .hamburger div:nth-child(3) {
   width: 40vw; /* 20% of viewport width */
   height: 100vh; /* full viewport height */
   pointer-events: none; /* so it does not block clicks */
-  outline: 2px solid blue; /* show bounding box */
+ /* outline: 2px solid blue; /* show bounding box */
 }
 /* ============= card CSS end ============ */
-
+/* ===================content blockk =========================*/
+.contentblock{
+	overflow: visible;
+	background-color:grey;
+	  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns equal width */
+  grid-template-rows: repeat(2, 100px); /* 2 rows, 100px height */
+  gap: 10px; /* space between grid items */
+	z-index:2000;
+}
+.contentblock div{
+	
+}
 
 @media (prefers-reduced-motion: reduce) {
 	.a3d { animation-duration: 70s }
