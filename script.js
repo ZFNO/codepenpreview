@@ -97,6 +97,16 @@ for (let i = 0; i < N; i++) {
   video.controls = false;
   video.disablePictureInPicture = true;
   video.controlsList = "nodownload nofullscreen noremoteplayback";
+  video.addEventListener('contextmenu', e => e.preventDefault());
+  
+
+  const blocker = document.createElement('div');
+  blocker.className = "video-blocker";
+  blocker.addEventListener('touchstart', e => e.preventDefault(), { passive: false });
+  // Optionally add JS for tap if you want custom action
+  card.appendChild(blocker);
+
+  
 
   const text = document.createElement('div');
   text.className = 'card-text';      // same class
@@ -119,6 +129,7 @@ for (let i = 0; i < N; i++) {
   reflectionVideo.controls = false;
   reflectionVideo.disablePictureInPicture = true;
   reflectionVideo.controlsList = "nodownload nofullscreen noremoteplayback";
+  reflectionVideo.addEventListener('contextmenu', e => e.preventDefault());
 
   reflection.appendChild(reflectionVideo);
   card.appendChild(reflection);
