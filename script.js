@@ -385,35 +385,49 @@ el.addEventListener('wheel', e => {
     el.style.animationDelay = `-${progress * 60}s`;
   }
 });
-
 let startX = 0;
+let startY = 0;
 let isThrottled = false;
 
 el.addEventListener('touchstart', e => {
   startX = e.touches[0].clientX;
+  startY = e.touches[0].clientY;
 });
 
 el.addEventListener('touchmove', e => {
   if (isThrottled) return;
-  if (el.style.animationPlayState === 'paused') {
-    e.preventDefault();
-    const currentX = e.touches[0].clientX;
-    const deltaX = currentX - startX;
-    startX = currentX;
 
-    progress += -deltaX * 0.001;
-    if (progress > 1) {
-      progress -= 1;
-    } else if (progress < 0) {
-      progress += 1;
+  if (el.style.animationPlayState === 'paused') {
+    const currentX = e.touches[0].clientX;
+    const currentY = e.touches[0].clientY;
+    const diffX = Math.abs(currentX - startX);
+    const diffY = Math.abs(currentY - startY);
+
+    if (diffX > diffY) {
+      // Horizontal drag - prevent vertical scroll
+      e.preventDefault();
+
+      const deltaX = currentX - startX;
+      startX = currentX;
+
+      progress += -deltaX * 0.001;
+      if (progress > 1) {
+        progress -= 1;
+      } else if (progress < 0) {
+        progress += 1;
+      }
+      el.style.animationDelay = `-${progress * 60}s`;
+    } else {
+      // Vertical drag - don't preventDefault, allow scroll
     }
-    el.style.animationDelay = `-${progress * 60}s`;
   }
+
   isThrottled = true;
   setTimeout(() => {
     isThrottled = false;
-  }, 16); // runs max every 50ms
+  }, 16); // throttle delay ~60fps
 });
+
 
 el.addEventListener('touchstart', () => {
   el.style.animationPlayState = 'paused';
