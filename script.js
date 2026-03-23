@@ -308,7 +308,7 @@ el.addEventListener('touchmove', e => {
     const deltaX = currentX - startX;
     startX = currentX;
 
-    progress += -deltaX * 0.0001;
+    progress += -deltaX * 0.002;
     if (progress > 1) {
       progress -= 1;
     } else if (progress < 0) {
