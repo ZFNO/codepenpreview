@@ -601,13 +601,17 @@ mask-image: linear-gradient(to bottom,
 
 
 /* ====== General page prettifying and layout ====== */
-html, body { display: grid }
-
+html, body { display: grid;
+  overscroll-behavior-x: contain;
+    overflow-x: hidden; 
+    touch-action: pan-y;
+  }
+    
 html { height: 100% }
 
 body {
 	z-index: -1;
-	/*background: #aa0000} background: #ffffff }aa1144*/
+	/*background: #aa0000 background: #ffffff aa1144*/
 	background-color: var(--background) ;
 }
 
