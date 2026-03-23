@@ -599,7 +599,7 @@ nav.active .hamburger div:nth-child(3) {
 	filter: opacity(1) blur(10px);
   mask-image: linear-gradient(to bottom,
     transparent 0%,
-    rgba(0,0,0,1) 10%,
+    rgba(0, 0, 0, 0.2) 10%,
     transparent 70%
     );
   pointer-events: none;
@@ -616,11 +616,11 @@ nav.active .hamburger div:nth-child(3) {
   height: 50%; /* adjust height as needed */
   overflow: hidden;
 
-  filter: opacity(1) blur(10px);
+  filter: opacity(0.6) blur(10px);
   mask-image: linear-gradient(to bottom,
       transparent 0%,
-      rgba(0,0,0,1) 10%,
-      transparent 70%
+      rgba(0,0,0,0.2) 10%,
+      transparent 90%
         );
   pointer-events: none;
 	transition: mask-image 4s ease, filter 4s ease, grayscale 4s ease, opacity .1s ease, transform 2s ease;

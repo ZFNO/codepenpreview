@@ -94,6 +94,9 @@ for (let i = 0; i < N; i++) {
   video.loop = true;
   video.muted = true;
   video.playsInline = true;
+  video.controls = false;
+  video.disablePictureInPicture = true;
+  video.controlsList = "nodownload nofullscreen noremoteplayback";
 
   const text = document.createElement('div');
   text.className = 'card-text';      // same class
@@ -113,6 +116,9 @@ for (let i = 0; i < N; i++) {
   reflectionVideo.loop = true;
   reflectionVideo.muted = true;
   reflectionVideo.playsInline = true;
+  reflectionVideo.controls = false;
+  reflectionVideo.disablePictureInPicture = true;
+  reflectionVideo.controlsList = "nodownload nofullscreen noremoteplayback";
 
   reflection.appendChild(reflectionVideo);
   card.appendChild(reflection);
@@ -460,6 +466,8 @@ window.onload = () => {
   const cards = document.querySelectorAll('.card');
   cards.forEach(card => {
     card.addEventListener('contextmenu', e => e.preventDefault());
+    card.addEventListener('touchstart', e => e.preventDefault(), { passive: false });
+    card.addEventListener('mousedown', e => e.preventDefault());
   });
 };
 
