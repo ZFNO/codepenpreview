@@ -79,7 +79,7 @@ nav {
   justify-content: space-between; /* space brand and links */
   align-items: center;
 	height: 30px; 
-  padding: 1rem 2rem;
+  padding: 0.5rem 0.5rem;
   background-color: #11111122; /* white bg */
 
 	
@@ -98,6 +98,14 @@ nav .logo {
   text-decoration: none;
 }
 
+nav .logo-burger {
+  display: none;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: var(--nav-logo);
+  text-decoration: none;
+}
+
 nav .menu-list{
 	font-family: var(--main-font);
 	
@@ -108,7 +116,7 @@ nav ul {
   gap: 2rem;
   margin: 0;
   padding: 3%;
-	opacitiy: transparent;
+	opacity: transparent;
 }
 /* */
 nav ul li a {
@@ -124,41 +132,53 @@ nav ul li a:hover {
 
 nav.active ul {
 /*  position: fixed;
+  
   top: 0;
   right: 0;      /* change left -> right /
-  height: 100vh;
+  height: 50vh;
   width: 60vw; /* 60% of viewport width /
-  padding-top: 3vw; /* space top relative to viewport /
+  padding-top: 1vw; /* space top relative to viewport /
   background: white;
   z-index: 9999;
-  padding-top: 3rem;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   box-shadow: -2px 0 5px rgba(0,0,0,0.3); */
+
+
+  
 	position: fixed;
   top: 0;
   left: 0;       /* cover from left */
   width: 100vw;  /* full viewport width */
-  height: 100vh; /* full height */
+  height: 10vh; /* full height */
   background: white;
-  padding-top: 3rem;
+
   flex-direction: column;
   align-items: flex-start; /* text left */
   box-shadow: none;
   z-index: 9999;
   display: flex;
   overflow-y: auto; /* scroll if long */
-	
-	  transition: background-color 1s ease, opacity 1.5s ease, transform 0.5s ease;
+	transition: background-color 1s ease, opacity 1.5s ease, transform 0.5s ease;
 
 }
 
 nav.active ul li {
+
 	font: var(--main-font);
 	
   text-align: left;
   font-size: 1.2rem; /* bigger touch area */
+}
+
+nav.active .logo-burger {
+  display: inline;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: var(--nav-logo);
+  text-decoration: none;
 }
 
 
@@ -205,7 +225,7 @@ nav.active .hamburger div:nth-child(1) {
 	
 }
 nav.active .hamburger div:nth-child(2) {
-	transform: translateX(100px);
+	transform: translateX(-100px);
   opacity: 0;
 }
 nav.active .hamburger div:nth-child(3) {
@@ -232,7 +252,7 @@ nav.active .hamburger div:nth-child(3) {
     flex-direction: column;
 		background-color: #ffffff;
 		transition: background-color 1.5s ease, display 1.5s ease, opacity 1s ease;
-		opacity:99%;
+		opacity:100%;
 			font-size: 100px;
 		
 		
@@ -244,21 +264,24 @@ nav.active .hamburger div:nth-child(3) {
   }
 	
   nav.active ul {
-		background: #151515;
+
+    background: #151515;
     display: flex;
-		background-color: #151515;
-		transition: background-color 1.5s ease, display 1.5s ease;
-				  justify-content: center; /* horizontal */
-  align-items: center;
-		  display: flex;
-  flex-direction: column;
-  justify-content: center; /* vertical align */
-  align-items: center;     /* horizontal align */
-  gap: 40px;               /* space between items */
-  height: 100%;
+    background-color: #151515;
+    transition: background-color 1.5s ease, display 1.5s ease;
+    justify-content: center; /* horizontal */
+    align-items: center;
+    display: relative;
+    flex-direction: column;
+    justify-content: center; /* vertical align */
+    align-items: center;     /* horizontal align */
+    gap: 20px;               /* space between items */
+    height: 100%;
 
   }
+
 	nav.active menu-list {
+    
 		text-decoration: none;
 		color: #333;
 		font-weight: 500;
@@ -428,23 +451,23 @@ nav.active .hamburger div:nth-child(3) {
 }
 @media (max-width: 600px){
     .scene {
-      
+
       width: 100vw;
       margin-top: -10vh;
       overflow: hidden;
-      position: static;
-      transform: translateY(-50px);
+      position: relative;
+      transform: translateY(0px);
       /* push content up, hide top 50px */
     }
     .scene .scene-overlay {
-
-      position: relative;
+      /* border: dotted 5px red;*/
+      position: absolute;
       background: var(--background);
       pointer-events: none;
       /* makes the items behind clickable and hoverable*/
       inset: 0;
       /* fills parent*/
-      backdrop-filter: blur(10px);
+      z-index:50;
       -webkit-mask-image: linear-gradient(to top, var(--background), transparent 10%);
       mask-image: linear-gradient(to top, var(--background), transparent 10%);
 
@@ -692,6 +715,7 @@ html, body { display: grid;
   overscroll-behavior-x: contain;
     overflow-x: hidden; 
     touch-action: pan-y;
+      -webkit-tap-highlight-color: transparent;
   }
     
 html { height: 100% }
