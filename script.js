@@ -319,7 +319,7 @@ el.addEventListener('touchmove', e => {
   isThrottled = true;
   setTimeout(() => {
     isThrottled = false;
-  }, 50); // runs max every 50ms
+  }, 16.6); // runs max every 50ms
 });
 
 el.addEventListener('touchstart', () => {
