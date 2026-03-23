@@ -1,4 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css2?\
+@import url('https://fonts.googleapis.com/css2?\
 family=Emerald+Serif&\
 family=Forever+Freedom&\
 family=Bauhaus&\
@@ -39,7 +39,7 @@ display=swap');
 	--background: #111111;/* #780116;#ffffff/* */
 	--main-h1: #969696af; /* #F7b538;*/
 	--faint-blink: #ff4444; /* #ff4444;*/
-	--main-h2: #aaaaaaa5;	/*  #ff4444;*/
+	--main-h2: #888888a5;	/*  #ff4444;*/
 	--main-h3: ; /* #000000;*/
 	
 	--nav-logo: #969696af; /* #F7b538;*/
@@ -294,7 +294,7 @@ nav.active .hamburger div:nth-child(3) {
  	transform: translate(20%, -50%); /* clamp(2vw, 8vw, 20px);
 		*/
 	font-family: var(--catchy-font);
-  font-size: clamp(56px, 7.5vw, 64px);
+  font-size: clamp(45px, 7.5vw, 64px);
 	
 	filter:blur(0.5px);
 
@@ -337,7 +337,7 @@ nav.active .hamburger div:nth-child(3) {
 .scene, .a3d { display: grid }
 
 .scene {
-	
+
 	/* prevent scrollbars */
 	
 	overflow: hidden;
@@ -345,22 +345,8 @@ nav.active .hamburger div:nth-child(3) {
 	perspective: 35em;
 	mask: /* lateral fade */
 		linear-gradient(90deg, 
-				#0000, red 20% 80%, #0000);
-		
+				#0000, red 20% 80%, #0000)
 } 
-
-.scene .scene-overlay{
-	position: absolute ;
-	 background :var(--background);
-	  pointer-events: none;/* makes the items behind clickable and hoverable*/
-		inset: 0; /* fills parent*/
-	backdrop-filter: blur(10px);
-		  -webkit-mask-image: linear-gradient(to top, var(--background), transparent 10%);
-  mask-image: linear-gradient(to top, var(--background), transparent 10%);
-	
-}
-
-
 .a3d {
 	overflow: visible;
 	place-self: center /* middle align */;
@@ -368,9 +354,7 @@ nav.active .hamburger div:nth-child(3) {
 	 * of this parent having its own 3D transform */
 	transform-style: preserve-3d;
 	animation: ry 60s linear infinite;
-
-
-
+	
 	
 
 }
@@ -493,20 +477,14 @@ nav.active .hamburger div:nth-child(3) {
   width: 100%;
   height: 50%; /* adjust height as needed */
   overflow: hidden;
-  transform: scaleY(-3);
-	 filter: opacity(1) blur(10px);
-mask-image: linear-gradient(to bottom,
-    transparent 0%,
-    rgba(0,0,0,1) 10%,
-    transparent 70%
-);
-
+  transform: scaleY(-5);
+  filter: opacity(0.3) blur(8px);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
 	
   pointer-events: none;
-	transition: mask-image 2s ease, filter 2s ease, grayscale 2s ease, opacity 2s ease, transform 2s ease;
+	transition: mask-image 4s ease, filter 4s ease, grayscale 4s ease, opacity 4s ease;
 	
-	}
-
+}
  .reflection.active {
   position: fixed;
   top: 100%; /* below card */
@@ -514,12 +492,12 @@ mask-image: linear-gradient(to bottom,
   width: 100%;
   height: 50%; /* adjust height as needed */
   overflow: hidden;
-  transform: scaleY(-1.5);
-  filter: opacity(1) blur(10px);
+  transform: scaleY(-3);
+  filter: opacity(1) blur(8px);
 mask-image: linear-gradient(to bottom,
     transparent 0%,
-    rgba(0,0,0,1) 10%,
-    transparent 70%
+    rgba(0,0,0,0.9) 10%,
+    transparent 60%
 );
 	
   pointer-events: none;
@@ -527,25 +505,6 @@ mask-image: linear-gradient(to bottom,
 	
 }
 
- .card:hover .reflection {
-  position: fixed;
-  top: 100%; /* below card */
-  left: 0;
-  width: 100%;
-  height: 50%; /* adjust height as needed */
-  overflow: hidden;
-  transform: scaleY(-1.5);
-  filter: opacity(1) blur(10px);
-mask-image: linear-gradient(to bottom,
-    transparent 0%,
-    rgba(0,0,0,1) 10%,
-    transparent 70%
-);
-	
-  pointer-events: none;
-	transition: mask-image 4s ease, filter 4s ease, grayscale 4s ease, opacity .1s ease;
-	
-}
 .reflection img {
   width: 100%;
   height: 100%;

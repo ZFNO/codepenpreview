@@ -1,4 +1,4 @@
-﻿
+
 const hamburger = document.getElementById('hamburger');
 const nav = document.querySelector('nav');
 
@@ -231,7 +231,7 @@ animate();
 const headlines = [
   "One AI. Infinite Profiles. All Systems Go.",
   "Deploy a dev agent in seconds.",
-  "Start a project → Run your team _ Alone.",
+  "Start a project  Run your team _ Alone.",
 	"Power at your fingertips. What will you do?"
 ];
 
