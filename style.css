@@ -340,14 +340,6 @@ nav.active .hamburger div:nth-child(3) {
 }
 
 @media (max-width: 600px) {
-  .scene {
-
-    width: 100vw;
-    overflow: hidden;
-    position: static;
-    transform: translateY(-50px);
-    /* push content up, hide top 50px */
-  }
 
 
   .heading_title {
@@ -361,7 +353,7 @@ nav.active .hamburger div:nth-child(3) {
     /*
   
     left: 50%;
-    transform: translate(20%, -50%); 
+    transform: translate(20%, -45%); 
     /* clamp(2vw, 8vw, 20px);*/
     font-family: var(--catchy-font);
     font-size: clamp(48px, 7.5vw, 64px);
@@ -387,7 +379,7 @@ nav.active .hamburger div:nth-child(3) {
 
     /*filter: invert(1); */
 
-    transform: translate(0%, -85%);
+    transform: translate(0%, -80%);
     font-family: var(--main-font);
     font-size: clamp(12px, 2vw, 40px);
     /* clamp(2vw, 8vw, 20px);*/
@@ -433,7 +425,29 @@ nav.active .hamburger div:nth-child(3) {
   mask-image: linear-gradient(to top, var(--background), transparent 10%);
 	
 }
+@media (max-width: 600px){
+    .scene {
+      width: 100vw;
+      overflow: hidden;
+      position: static;
+      transform: translateY(-50px);
+      /* push content up, hide top 50px */
+    }
+    .scene .scene-overlay {
 
+      position: relative;
+      background: var(--background);
+      pointer-events: none;
+      /* makes the items behind clickable and hoverable*/
+      inset: 0;
+      /* fills parent*/
+      backdrop-filter: blur(10px);
+      -webkit-mask-image: linear-gradient(to top, var(--background), transparent 10%);
+      mask-image: linear-gradient(to top, var(--background), transparent 10%);
+
+
+
+  }}
 
 .a3d {
 	overflow: visible;
