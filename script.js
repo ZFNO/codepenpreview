@@ -6,7 +6,7 @@ hamburger.addEventListener('click', () => {
   nav.classList.toggle('active');
 });
 
-
+/*
 const DATA = [
   "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExemp6djl1M3htdHdicjhnZmhraWVtbjR1M3U1ODU5ZnU0M2FkbWZ5OCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/LPlmexh8SLjO9OwPxP/giphy.gif",
   "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3b3E4dXJ1ajQ3cnF1eTYyd3pxenJucDF2dnlnenJhd2JicmlldnZhaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/HADJFxlJv4AF2rUAB6/giphy.gif",
@@ -42,7 +42,7 @@ for (let i = 0; i < N; i++) {
   text.className = 'card-text';
   text.id = `card${i + 1}`;
   text.textContent = `FEATURE ${i + 1}`;
-	/* */
+
 
   card.appendChild(img);
   card.appendChild(text);
@@ -60,6 +60,67 @@ for (let i = 0; i < N; i++) {
 
   container.appendChild(card);
 }
+
+*/
+
+
+const DATA = [
+  'placeholders/gif0.webm',
+  'placeholders/gif1.webm',
+  'placeholders/gif2.webm',
+  'placeholders/gif3.webm',
+  'placeholders/gif4.webm',
+  'placeholders/gif5.webm',
+  'placeholders/gif6.webm',
+  'placeholders/gif7.webm',
+  'placeholders/gif8.webm',
+  'placeholders/gif9.webm',
+  'placeholders/gif10.webm',
+  'placeholders/gif11.webm'
+];
+
+const N = DATA.length;
+const container = document.querySelector('.a3d');
+container.style.setProperty('--n', N);
+
+for (let i = 0; i < N; i++) {
+  const card = document.createElement('div');
+  card.className = 'card';           // same class
+  card.style.setProperty('--i', i); // same inline style
+
+  const video = document.createElement('video');
+  video.src = DATA[i];
+  video.autoplay = true;
+  video.loop = true;
+  video.muted = true;
+  video.playsInline = true;
+
+  const text = document.createElement('div');
+  text.className = 'card-text';      // same class
+  text.id = `card${i + 1}`;
+  text.textContent = `FEATURE ${i + 1}`;
+
+  card.appendChild(video);
+  card.appendChild(text);
+
+  // reflection as in your original code
+  const reflection = document.createElement('div');
+  reflection.className = 'reflection card';
+
+  const reflectionVideo = document.createElement('video');
+  reflectionVideo.src = DATA[i];
+  reflectionVideo.autoplay = true;
+  reflectionVideo.loop = true;
+  reflectionVideo.muted = true;
+  reflectionVideo.playsInline = true;
+
+  reflection.appendChild(reflectionVideo);
+  card.appendChild(reflection);
+
+  container.appendChild(card);
+}
+
+
 
 /*links  
 const DATA = [
@@ -226,6 +287,36 @@ function animate() {
 }
 
 animate();
+
+
+
+
+/*
+const carousel = document.querySelector('.a3d'); // your rotating carousel element
+let scrollSpeed = 0.001; // tune speed
+
+window.addEventListener('mousemove', e => {
+  const rect = box.getBoundingClientRect();
+  if (e.clientX < rect.left) {
+    // outside left
+    scrollCarousel(-scrollSpeed);
+  } else if (e.clientX > rect.right) {
+    // outside right
+    scrollCarousel(scrollSpeed);
+  }
+});
+
+function scrollCarousel(delta) {
+  // Use same progress variable as your animation
+  progress += delta;
+  if (progress > 1) progress -= 1;
+  if (progress < 0) progress += 1;
+  carousel.style.animationDelay = `-${progress * 60}s`;
+}
+
+*/
+
+
 //-------------bounding box----------------------
 //-------------Typewriter----------------------
 const headlines = [
@@ -238,7 +329,7 @@ const headlines = [
 
 const cardtext = {
   card1: ['300+ commands; comlpete commandline freedom', 'streamlined workflows'],
-  card2: ['automate document with their own custom histories', 'value2b'],
+  card2: ['automated documentat usage and organization','automate document editing with their own custom histories' ],
   card3: ['value3a', 'value3b'],
   card4: ['value4a', 'value4b'],
   card5: ['value5a', 'value5b'],
@@ -270,6 +361,8 @@ function animateTypewriter(element, texts, textIndex = 0, charIndex = 0) {
 
 const el = document.querySelector('.a3d');
 let progress = 0;  // from 0 to 1
+
+
 
 el.addEventListener('mouseenter', () => {
   el.style.animationPlayState = 'paused';
@@ -308,7 +401,7 @@ el.addEventListener('touchmove', e => {
     const deltaX = currentX - startX;
     startX = currentX;
 
-    progress += -deltaX * 0.002;
+    progress += -deltaX * 0.001;
     if (progress > 1) {
       progress -= 1;
     } else if (progress < 0) {
@@ -319,7 +412,7 @@ el.addEventListener('touchmove', e => {
   isThrottled = true;
   setTimeout(() => {
     isThrottled = false;
-  }, 16.6); // runs max every 50ms
+  }, 16); // runs max every 50ms
 });
 
 el.addEventListener('touchstart', () => {
@@ -334,22 +427,26 @@ el.addEventListener('touchend', () => {
 
 
 
-window.onload = () => 
-{
+window.onload = () => {
   // For single intro element
   const intro = document.getElementById('typewriter_intro');
   if (intro) animateTypewriter(intro, headlines);
 
   // For all card-text elements
-const cards = document.querySelectorAll('.card-text');
-cards.forEach((card, index) => {
-  const key = 'card' + (index + 1); // card1, card2, ...
-  const texts = cardtext[key];
-  if (texts) {
-    animateTypewriter(card, texts);
-  }
-});
-	
+  const cardsText = document.querySelectorAll('.card-text');
+  cardsText.forEach((card, index) => {
+    const key = 'card' + (index + 1);
+    const texts = cardtext[key];
+    if (texts) {
+      animateTypewriter(card, texts);
+    }
+  });
+
+  // Prevent context menu on cards
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    card.addEventListener('contextmenu', e => e.preventDefault());
+  });
 };
 
 
