@@ -191,6 +191,15 @@ nav.active ul li {
 
 /* active state */
 /*===========Turn hamburger to X===============*/
+
+.scene {
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  transform: translateY(-50px);
+  /* push content up, hide top 50px */
+  	}
+
 nav.active .hamburger div:nth-child(1) {
   transform: rotate(45deg) translate(6px, 5px);
 	
@@ -208,18 +217,13 @@ nav.active .hamburger div:nth-child(3) {
   background: var(--nav-hamburger); /* color when hamburger is X */
 }
 
-/* Mobile styles */
+/*+++++++++======= Mobile styles =======++++++++*/
+
+
 @media (max-width: 600px) {
 
-	
-	
 	/*===========Turn hamburger to X===============*/
-	.scene{
-width: 100vw;
-  overflow: hidden;
-  position: relative;
-		transform: translateY(-50px); /* push content up, hide top 50px */
-	}
+
 	
 	
   nav ul {
@@ -334,6 +338,71 @@ width: 100vw;
 	background-color: transparent;
 	
 }
+
+@media (max-width: 600px) {
+  .scene {
+
+    width: 100vw;
+    overflow: hidden;
+    position: static;
+    transform: translateY(-50px);
+    /* push content up, hide top 50px */
+  }
+
+
+  .heading_title {
+
+    position: static;
+    margin-top: 0vh;
+    /* move down 20px */
+    filter: invert(1);
+    top: 500%;
+
+    /*
+  
+    left: 50%;
+    transform: translate(20%, -50%); 
+    /* clamp(2vw, 8vw, 20px);*/
+    font-family: var(--catchy-font);
+    font-size: clamp(48px, 7.5vw, 64px);
+  
+    filter: blur(0.5px);
+  
+    font-weight: bold;
+    letter-spacing: 1.5vw;
+    text-transform: uppercase;
+    text-align: center;
+    box-sizing: border-box;
+    z-index: 120;
+    background-color: transparent;
+  }
+
+
+
+  .heading_liner {
+    position: static;
+    /* or absolute */
+    /*text-shadow: 2px 2px 4px rgba(0,0,0,0.5);*/
+
+
+    /*filter: invert(1); */
+
+    transform: translate(0%, -85%);
+    font-family: var(--main-font);
+    font-size: clamp(12px, 2vw, 40px);
+    /* clamp(2vw, 8vw, 20px);*/
+    font-weight: bold;
+    letter-spacing: 0.5vw;
+    text-transform: uppercase;
+    text-align: center;
+    box-sizing: border-box;
+    z-index: 120;
+    background-color: transparent;
+
+  }
+}
+
+
 
 /*======================Heading Title End=========================*/
 
