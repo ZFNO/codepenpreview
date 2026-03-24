@@ -38,7 +38,11 @@ display=swap');
 	/* TestMode*/
 	--background: #111111;/* #780116;#ffffff/* */
   --nav: #ffffff01;
-	--main-h1: #969696af; /* #F7b538;*/
+	--main-h1: #dfdfdf; /* #F7b538;*/
+  --main-glow: 0 0 5px rgba(255, 255, 255, 0.3),
+    0 0 10px rgba(255, 255, 255, 0.3),
+    0 0 20px rgba(255, 255, 255, 0.3),
+    0 0 40px rgba(255, 255, 255, 0.3);
 	--faint-blink: #ff4444; /* #ff4444;*/
 	--main-h2: #aaaaaaa5;	/*  #ff4444;*/
 	--main-h3: ; /* #000000;*/
@@ -329,18 +333,18 @@ nav.active .hamburger div:nth-child(3) {
 	/*text-shadow: 2px 2px 4px rgba(0,0,0,0.5);*/
 	color: var(--main-h1);
 
-	filter: invert(1);
+	
   top: 500%; 
 
 	
 
-
+text-shadow: var(--main-glow);
  	transform: translate(0%, -150%); /* clamp(2vw, 8vw, 20px);
 		*/
 	font-family: var(--catchy-font);
   font-size: clamp(56px, 7.5vw, 64px);
 	
-	filter:blur(0.5px);
+
 
   font-weight: bold;
   letter-spacing: 1.5vw;
@@ -361,7 +365,8 @@ nav.active .hamburger div:nth-child(3) {
 		filter:blur(0.5px);
 	/*filter: invert(1); */
 	
-  transform: translate(0%, -600%); 
+  transform: translate(0%, clamp(-100px,-600%, -10000px)); 
+  /* clamp(2vw, 8vw, 20px);*/
 	font-family: var(--main-font);
   font-size:  clamp(12px, 2vw, 40px); /* clamp(2vw, 8vw, 20px);*/
   font-weight: bold;
@@ -375,9 +380,8 @@ nav.active .hamburger div:nth-child(3) {
 }
 
 @media (max-width: 600px) {
-
-
   .heading_title {
+    text-shadow: var(--main-glow);
 
     position: static;
     margin-top: -5vh;
@@ -440,7 +444,7 @@ nav.active .hamburger div:nth-child(3) {
 .scene {
 	
 	/* prevent scrollbars */
-	
+  pointer-events: auto;
 	overflow: hidden;
 	/* for 3D look; smaller = more extreme effect */
 	perspective: 35em;
@@ -495,7 +499,7 @@ nav.active .hamburger div:nth-child(3) {
 	transform-style: preserve-3d;
 	animation: ry 60s linear infinite;
   
-
+pointer-events: none;
 
 
 	
@@ -511,6 +515,8 @@ nav.active .hamburger div:nth-child(3) {
 }
 /*
 .a3d::after {
+    z-index:1;
+
     content: "";
     position: absolute;
     bottom: 0;
@@ -531,9 +537,9 @@ nav.active .hamburger div:nth-child(3) {
 
 /* =============card CSS start============ */
 .card {
+	z-index: 25;
 	
-	
-	
+  pointer-events: auto;
 
 	--w: 15.5em;	/* base card width */
         /* compute base angle corresponding to a card */
@@ -563,13 +569,27 @@ nav.active .hamburger div:nth-child(3) {
 } 
 .card:hover {
 	position: absolute;
-	scale: 1;
+	scale: 1.01;
   border: .5px solid grey; /* or any color and thickness */
   filter: grayscale(0%);
 	opacity: 1;
 	transition: opacity 0.5s ease , filter 1s linear;
-	
+  box-shadow: var(--main-glow);
+  z-index: 999;
 }
+
+.card.active:hover {
+  position: absolute;
+  scale: 1.01;
+  border: .5px solid grey;
+  /* or any color and thickness */
+  filter: grayscale(0%);
+  opacity: 1;
+  transition: opacity 0.5s ease, filter 1s linear;
+  box-shadow: var(--main-glow);
+  z-index: 999;
+}
+
 .card.active {
   /*border-color: white;*/
 	transition: border-color 1s ease,opacity 4s ease, filter 5s ease;
@@ -602,6 +622,7 @@ nav.active .hamburger div:nth-child(3) {
 }
 
 .card:hover .card-text{
+  
 	opacity: 1.0;
 		transition: opacity 1s ease , filter 1s linear;
 	
@@ -646,7 +667,7 @@ nav.active .hamburger div:nth-child(3) {
 	filter: opacity(1) blur(10px);
   mask-image: linear-gradient(to bottom,
     transparent 0%,
-    rgba(0, 0, 0, 0.2) 10%,
+    rgba(0, 0, 0, 0.8) 10%,
     transparent 70%
     );
   pointer-events: none;
@@ -656,7 +677,7 @@ nav.active .hamburger div:nth-child(3) {
 
  .reflection.active {
   
-  position: fixed;
+  position: absolute;
   top: 100%; /* below card */
   left: 0;
   width: 100%;
@@ -666,7 +687,7 @@ nav.active .hamburger div:nth-child(3) {
   filter: opacity(0.6) blur(10px);
   mask-image: linear-gradient(to bottom,
       transparent 0%,
-      rgba(0,0,0,0.2) 10%,
+      rgba(0,0,0,1) 10%,
       transparent 90%
         );
   pointer-events: none;
@@ -676,19 +697,13 @@ nav.active .hamburger div:nth-child(3) {
 
  .card:hover .reflection {
   
-  position: fixed;
-  top: 100%; /* below card */
-  left: 0;
-  width: 100%;
-  height: 50%; /* adjust height as needed */
-  overflow: hidden;
-  transform: scaleY(-1.5);
   filter: opacity(1) blur(10px);
-mask-image: linear-gradient(to bottom,
+  mask-image: linear-gradient(to bottom,
     transparent 0%,
     rgba(0,0,0,1) 10%,
     transparent 70%
-);
+    );
+  box-shadow: var(--main-glow); 
 	
   pointer-events: none;
 	transition: mask-image 4s ease, filter 4s ease, grayscale 4s ease, opacity .1s ease;

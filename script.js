@@ -405,45 +405,90 @@ el.addEventListener('wheel', e => {
 let startX = 0;
 let startY = 0;
 let isThrottled = false;
-
+//inertia
+let lastX = 0;
+let velocity = 0;
+let lastTime = 0;
+let animationId = null;
 el.addEventListener('touchstart', e => {
   startX = e.touches[0].clientX;
-  startY = e.touches[0].clientY;
-});
+  lastX = startX;
+  lastTime = Date.now();
+  velocity = 0;
+
+  // Stop any existing animation
+  if (animationId) {
+    cancelAnimationFrame(animationId);
+    animationId = null;
+  }
+
+  el.style.animationPlayState = 'paused';
+}, { passive: false });
 
 el.addEventListener('touchmove', e => {
   if (isThrottled) return;
 
-  if (el.style.animationPlayState === 'paused') {
-    const currentX = e.touches[0].clientX;
-    const currentY = e.touches[0].clientY;
-    const diffX = Math.abs(currentX - startX);
-    const diffY = Math.abs(currentY - startY);
+  const currentX = e.touches[0].clientX;
+  const currentTime = Date.now();
+  const deltaTime = currentTime - lastTime;
 
-    if (diffX > diffY) {
-      // Horizontal drag - prevent vertical scroll
-      e.preventDefault();
+  if (deltaTime > 0) {
+    velocity = (currentX - lastX) / deltaTime; // pixels per ms
+  }
+1
+  lastX = currentX;
+  lastTime = currentTime;
 
-      const deltaX = currentX - startX;
-      startX = currentX;
+  // Your existing drag code
+  const diffX = Math.abs(currentX - startX);
+  const diffY = Math.abs(e.touches[0].clientY - startY);
 
-      progress += -deltaX * 0.001;
-      if (progress > 1) {
-        progress -= 1;
-      } else if (progress < 0) {
-        progress += 1;
-      }
-      el.style.animationDelay = `-${progress * 60}s`;
-    } else {
-      // Vertical drag - don't preventDefault, allow scroll
-    }
+  if (diffX > diffY) {
+
+
+    const deltaX = currentX - startX;
+    startX = currentX;
+
+    progress += -deltaX * 0.001;
+    if (progress > 1) progress -= 1;
+    if (progress < 0) progress += 1;
+    el.style.animationDelay = `-${progress * 60}s`;
   }
 
   isThrottled = true;
-  setTimeout(() => {
-    isThrottled = false;
-  }, 16); // throttle delay ~60fps
+  setTimeout(() => { isThrottled = false; }, 16);
+}, { passive: false });
+
+el.addEventListener('touchend', () => {
+  // Start inertia animation
+  if (Math.abs(velocity) > 0.1) { // threshold
+    applyInertia();
+  } else {
+    el.style.animationPlayState = 'running';
+  }
 });
+
+function applyInertia() {
+  const friction = 0.95; // adjust for feel
+  const minVelocity = 0.01;
+
+  function animate() {
+    if (Math.abs(velocity) < minVelocity) {
+      el.style.animationPlayState = 'running';
+      return;
+    }
+
+    progress += -velocity * 0.05; // adjust multiplier for strength
+    if (progress > 1) progress -= 1;
+    if (progress < 0) progress += 1;
+    el.style.animationDelay = `-${progress * 60}s`;
+
+    velocity *= friction;
+    animationId = requestAnimationFrame(animate);
+  }
+
+  animationId = requestAnimationFrame(animate);
+}
 
 
 el.addEventListener('touchstart', () => {
