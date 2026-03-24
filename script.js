@@ -102,7 +102,7 @@ for (let i = 0; i < N; i++) {
 
   const blocker = document.createElement('div');
   blocker.className = "video-blocker";
-  blocker.addEventListener('touchstart', e => e.preventDefault(), { passive: false });
+  //blocker.addEventListener('touchstart', e => e.preventDefault(), { passive: false });
   // Optionally add JS for tap if you want custom action
   card.appendChild(blocker);
 
@@ -410,8 +410,15 @@ let lastX = 0;
 let velocity = 0;
 let lastTime = 0;
 let animationId = null;
+
+let isDragging = false;
+let rafId = null;
+
 el.addEventListener('touchstart', e => {
+  isDragging = true;
   startX = e.touches[0].clientX;
+  startY = e.touches[0].clientY;
+
   lastX = startX;
   lastTime = Date.now();
   velocity = 0;
@@ -422,11 +429,17 @@ el.addEventListener('touchstart', e => {
     animationId = null;
   }
 
+  if (rafId) {
+    cancelAnimationFrame(rafId);
+    rafId = null;
+  }
+
   el.style.animationPlayState = 'paused';
 }, { passive: false });
 
+
 el.addEventListener('touchmove', e => {
-  if (isThrottled) return;
+  if (!isDragging || isThrottled) return;
 
   const currentX = e.touches[0].clientX;
   const currentTime = Date.now();
@@ -435,7 +448,7 @@ el.addEventListener('touchmove', e => {
   if (deltaTime > 0) {
     velocity = (currentX - lastX) / deltaTime; // pixels per ms
   }
-1
+
   lastX = currentX;
   lastTime = currentTime;
 
@@ -444,7 +457,7 @@ el.addEventListener('touchmove', e => {
   const diffY = Math.abs(e.touches[0].clientY - startY);
 
   if (diffX > diffY) {
-
+    e.preventDefault();
 
     const deltaX = currentX - startX;
     startX = currentX;
@@ -452,7 +465,14 @@ el.addEventListener('touchmove', e => {
     progress += -deltaX * 0.001;
     if (progress > 1) progress -= 1;
     if (progress < 0) progress += 1;
-    el.style.animationDelay = `-${progress * 60}s`;
+
+    // Cancel previous RAF
+    if (rafId) cancelAnimationFrame(rafId);
+
+    // Update CSS immediately in next frame
+    rafId = requestAnimationFrame(() => {
+      el.style.animationDelay = `-${progress * 60}s`;
+    });
   }
 
   isThrottled = true;
@@ -460,6 +480,14 @@ el.addEventListener('touchmove', e => {
 }, { passive: false });
 
 el.addEventListener('touchend', () => {
+  isDragging = false;
+
+  // Clean up RAF
+  if (rafId) {
+    cancelAnimationFrame(rafId);
+    rafId = null;
+  }
+
   // Start inertia animation
   if (Math.abs(velocity) > 0.1) { // threshold
     applyInertia();
@@ -490,7 +518,7 @@ function applyInertia() {
   animationId = requestAnimationFrame(animate);
 }
 
-
+/*
 el.addEventListener('touchstart', () => {
   el.style.animationPlayState = 'paused';
 });
@@ -498,7 +526,7 @@ el.addEventListener('touchstart', () => {
 el.addEventListener('touchend', () => {
   el.style.animationPlayState = 'running';
 });
-
+*/
 
 
 
@@ -522,8 +550,8 @@ window.onload = () => {
   const cards = document.querySelectorAll('.card');
   cards.forEach(card => {
     card.addEventListener('contextmenu', e => e.preventDefault());
-    card.addEventListener('touchstart', e => e.preventDefault(), { passive: false });
-    card.addEventListener('mousedown', e => e.preventDefault());
+    //card.addEventListener('touchstart', e => e.preventDefault(), { passive: false });
+    //card.addEventListener('mousedown', e => e.preventDefault());
   });
 };
 
