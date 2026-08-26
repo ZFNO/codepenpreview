@@ -347,7 +347,7 @@ const cardtext = {
     card1: ['300+ commands; comlpete commandline freedom', 'streamlined workflows'],
     card2: ['automated documentat usage and organization', 'automate document editing with their own custom histories'],
     card3: ['script tracking system', 'every piece of code in the conversation is documented and saved within the session and accessible from a menu to be retrieved along with a permanent script saving system'],
-    card4: [ 'get the right LLM for the job at any point in the conversation powerfully paired with a strong macro feature system', 'Models from OpenAI, Deepseek, Claude, Qwen and more'],
+    card4: ['get the right LLM for the job at any point in the conversation powerfully paired with a strong macro feature system', 'Models from OpenAI, Deepseek, Claude, Qwen and more'],
     card5: ['proprietary office suites integrated within the environment for document management', 'journaling for executives for a personal onenote/notion-like experience with notebooks along with a spreadsheets, pdfs and powerpoints.'],
     card6: ['voice mode for hands free interaction while still preserving internal commands', 'seamless integration with RVC and Whisper for integrating hands free assistants and custom voices.'],
     card7: ['customizable personas and tasks with prompt hotkeys', 'issue commands with the least amount of actions possible with multi level macros for different scales of interaction and efficiency'],
